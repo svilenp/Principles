@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SOLID\DIP\" />
+    <Folder Include="SOLID\ISP\" />
+    <Folder Include="SOLID\OCP\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Examples.Mocks\Examples.Mocks.csproj" />
+    <ProjectReference Include="..\Examples.Models\Examples.Models.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -15,14 +15,11 @@ public class FinancialDataService : IFinancialDataService
     private readonly DummySmsApi _dummySmsApi;
     private readonly DummyTradingApi _dummyTradingApi;
 
-    public FinancialDataService(
-        MockFinancialService mockFinancialService, 
-        DummySmsApi dummySmsApi, 
-        DummyTradingApi dummyTradingApi)
+    public FinancialDataService()
     {
-        _mockFinancialService = mockFinancialService;
-        _dummySmsApi = dummySmsApi;
-        _dummyTradingApi = dummyTradingApi;
+        _mockFinancialService = new MockFinancialService();
+        _dummySmsApi = new DummySmsApi();
+        _dummyTradingApi = new DummyTradingApi();
     }
 
     /// <summary>
@@ -131,7 +128,7 @@ public class FinancialDataService : IFinancialDataService
 
                 var message = new MailMessage
                 {
-                    From = new MailAddress("your_email@example.com"),
+                    From = new MailAddress("principles@livethecode.com"),
                     Subject = "Financial Data Report",
                     Body = "Please find attached the financial data report in CSV format."
                 };

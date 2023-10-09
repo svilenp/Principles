@@ -1,127 +1,80 @@
 ﻿using Examples.Interfaces;
-using Examples.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace Examples.Before.Controllers
+namespace Examples.Before.Controllers;
+
+//[Authorize]
+[ApiController]
+[Route("api/[controller]")]
+public class FinancialReportingController : ControllerBase
 {
-    //[Authorize]
-    [ApiController]
-    [Route("api/[controller]")]
-    public class FinancialReportingController : ControllerBase
+    private readonly IFinancialDataService _financialDataService;
+
+    public FinancialReportingController(IFinancialDataService financialDataService)
     {
-        private readonly IFinancialDataService _financialDataService;
+        _financialDataService = financialDataService;
+    }
 
-        public FinancialReportingController(IFinancialDataService financialDataService)
+    [HttpPost]
+    [Route("ExportData")]
+    public IActionResult ExportData(List<string> tickers)
+    {
+        try
         {
-            _financialDataService = financialDataService;
-        }
+            var finModels = _financialDataService.GetMetrics(tickers);
+            var result = _financialDataService.ExportData(finModels);
 
-        [HttpPost]
-        [Route("GetMetricsData")]
-        public IActionResult GetMetricsData(List<string> tickers)
-        {
-            try
+            if (result != null)
             {
-                var result = _financialDataService.GetMetrics(tickers);
-
-                if (result != null)
-                {
-                    return Ok(result);
-                }
-                else
-                {
-                    return NotFound();
-                }
+                return Ok(result);
             }
-            catch 
+            else
             {
-                return BadRequest();
+                return NotFound();
             }
         }
-
-        [HttpPost]
-        [Route("GetRanksData")]
-        public IActionResult GetRanksData(List<string> tickers)
+        catch
         {
-            try
-            {
-                var result = _financialDataService.GetRanks(tickers);
+            return BadRequest();
+        }
+    }
 
-                if (result != null)
-                {
-                    return Ok(result);
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            catch
+    [HttpPost]
+    [Route("SendData")]
+    public IActionResult SendData(List<string> tickers)
+    {
+        try
+        {
+            var finModels = _financialDataService.GetMetrics(tickers);
+            var currentUserEmail = GetCurrentUserEmail();
+
+            if (string.IsNullOrEmpty(currentUserEmail))
             {
-                return BadRequest();
+                return BadRequest("User email not found.");
+            }
+
+            var result = _financialDataService.SendData(finModels, currentUserEmail);
+
+            if (result != null)
+            {
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
             }
         }
-
-        [HttpPost]
-        [Route("ExportData")]
-        public IActionResult ExportData(List<FinancialsModel> finModels)
+        catch
         {
-            try
-            {
-                var result = _financialDataService.ExportData(finModels);
-
-                if (result != null)
-                {
-                    return Ok(result);
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            catch
-            {
-                return BadRequest();
-            }
+            return BadRequest();
         }
+    }
 
-        [HttpPost]
-        [Route("SendData")]
-        public IActionResult SendData(List<FinancialsModel> finModels)
-        {
-            try
-            {
-                var currentUserEmail = GetCurrentUserEmail();
-
-                if (string.IsNullOrEmpty(currentUserEmail))
-                {
-                    return BadRequest("User email not found.");
-                }
-
-                var result = _financialDataService.SendData(finModels, currentUserEmail);
-
-                if (result != null)
-                {
-                    return Ok();
-                }
-                else
-                {
-                    return NotFound();
-                }
-            }
-            catch
-            {
-                return BadRequest();
-            }
-        }
-
-        private string GetCurrentUserEmail()
-        {
-            // Get the current user from the user claims identity
-            // NOTE: This requires authentication mechanism to be set up and [Authorize] attribute 
-            return User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value ?? "dummy@livethecode.com";
-        }
+    private string GetCurrentUserEmail()
+    {
+        // Get the current user from the user claims identity
+        // NOTE: This requires authentication mechanism to be set up and [Authorize] attribute 
+        return User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value ?? "dummy@livethecode.com";
     }
 }

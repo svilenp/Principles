@@ -6,20 +6,19 @@ using System.Net;
 using System.Net.Mail;
 using OfficeOpenXml.Style;
 using OfficeOpenXml;
+using Examples.Mocks.Interfaces;
 
 namespace Examples.SOLID.SRP;
 
 public class FinancialDataService : IFinancialDataService
 {
-    private readonly MockFinancialService _mockFinancialService;
-    private readonly DummySmsApi _dummySmsApi;
-    private readonly DummyTradingApi _dummyTradingApi;
+    private readonly ISmsApi _dummySmsApi;
+    private readonly ITradingApi _dummyTradingApi;
 
-    public FinancialDataService()
+    public FinancialDataService(ISmsApi dummySmsApi, ITradingApi dummyTradingApi)
     {
-        _mockFinancialService = new MockFinancialService();
-        _dummySmsApi = new DummySmsApi();
-        _dummyTradingApi = new DummyTradingApi();
+        _dummySmsApi = dummySmsApi;
+        _dummyTradingApi = dummyTradingApi;
     }
 
     /// <summary>
@@ -30,7 +29,7 @@ public class FinancialDataService : IFinancialDataService
     /// </summary>
     /// <param name="tickers">A Collection of Stock Ticker Symbols</param>
     /// <returns>Financial Data Collection</returns>
-    public IEnumerable<FinancialsModel> GetMetrics(IEnumerable<string> tickers) => _mockFinancialService.GetDataForTickers(tickers);
+    public IEnumerable<FinancialsModel> GetMetrics(IEnumerable<string> tickers) => MockFinancialService.GetDataForTickers(tickers);
 
     /// <summary>
     /// This method is supposed to collect financial statistics, probably through a public API, for a given
@@ -40,7 +39,7 @@ public class FinancialDataService : IFinancialDataService
     /// </summary>
     /// <param name="tickers">A Collection of Stock Ticker Symbols</param>
     /// <returns>Ranks Collection</returns>
-    public IEnumerable<RankModel> GetRanks(IEnumerable<string> tickers) => _mockFinancialService.GetRanksForTickers(tickers);
+    public IEnumerable<RankModel> GetRanks(IEnumerable<string> tickers) => MockFinancialService.GetRanksForTickers(tickers);
 
     /// <summary>
     /// Contais a logic to generate an export document based on the financial data for 
@@ -223,7 +222,7 @@ public class FinancialDataService : IFinancialDataService
     {
         try
         {
-            _dummyTradingApi.BuyStock(ticker, sharesCount);
+            _dummyTradingApi.BuyOrder(ticker, sharesCount);
         }
         catch (Exception ex)
         {

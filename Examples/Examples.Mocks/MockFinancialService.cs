@@ -4,9 +4,9 @@ using OfficeOpenXml.Style;
 
 namespace Examples.Mocks;
 
-public class MockFinancialService
+public static class MockFinancialService
 {
-    public IEnumerable<FinancialsModel> GetDataForTickers(IEnumerable<string> tickers) => 
+    public static IEnumerable<FinancialsModel> GetDataForTickers(IEnumerable<string> tickers) => 
         new List<FinancialsModel>
         {
             new FinancialsModel
@@ -39,12 +39,12 @@ public class MockFinancialService
             }
         };
 
-    public IEnumerable<RankModel> GetRanksForTickers(IEnumerable<string> tickers)
+    public static IEnumerable<RankModel> GetRanksForTickers(IEnumerable<string> tickers)
     {
         throw new NotImplementedException();
     }
 
-    public byte[] GetExportData(IEnumerable<FinancialsModel> data)
+    public static byte[] GetExportData(IEnumerable<FinancialsModel> data)
     {
         // Create a new Excel package
         using (var package = new ExcelPackage())

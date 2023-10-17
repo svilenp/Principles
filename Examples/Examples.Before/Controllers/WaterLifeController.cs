@@ -9,6 +9,7 @@ namespace Examples.Before.Controllers
     public class WaterLifeController : ControllerBase
     {
         [HttpGet]
+        [Route("Animals")]
         public void Animals()
         {
             var waterAnimals = new List<WaterCreature>()

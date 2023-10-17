@@ -1,8 +1,10 @@
-﻿namespace Examples.Mocks;
+﻿using Examples.Mocks.Interfaces;
 
-public class DummyTradingApi
+namespace Examples.Mocks;
+
+public class DummyTradingApi : ITradingApi
 {
-    public void BuyStock(string ticker, double sharesCount)
+    public void BuyOrder(string ticker, double sharesCount)
     {
         throw new NotImplementedException();
     }

@@ -1,9 +1,11 @@
-﻿namespace Examples.Mocks;
+﻿using Examples.Mocks.Interfaces;
 
-public class DummySmsApi
+namespace Examples.Mocks;
+
+public class DummySmsApi : ISmsApi
 {
     public void Send(string message, string phoneNumber, string accountSid)
     {
-        throw new NotImplementedException();
+        Console.WriteLine($"Message: {message} was sent to {phoneNumber}, via SMS Gateway Service Account SID: {accountSid}");
     }
 }

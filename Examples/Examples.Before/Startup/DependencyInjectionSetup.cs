@@ -1,4 +1,6 @@
 ﻿using Examples.Interfaces;
+using Examples.Mocks;
+using Examples.Mocks.Interfaces;
 using Examples.SOLID.SRP;
 
 namespace Examples.Before.Startup;
@@ -11,7 +13,9 @@ public static class DependencyInjectionSetup
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
-        services.AddTransient<IFinancialDataService, FinancialDataService>();
+        services.AddScoped<IFinancialDataService, FinancialDataService>();
+        services.AddSingleton<ISmsApi, DummySmsApi>();
+        services.AddSingleton<ITradingApi, DummyTradingApi>();
 
         return services;
     }

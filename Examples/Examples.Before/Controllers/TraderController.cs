@@ -1,49 +1,48 @@
 ﻿using Examples.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Examples.Before.Controllers
+namespace Examples.Before.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class TraderController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class TraderController : ControllerBase
+    private readonly IFinancialDataService _financialDataService;
+
+    public TraderController(IFinancialDataService financialDataService)
     {
-        private readonly IFinancialDataService _financialDataService;
+        _financialDataService = financialDataService;
+    }
 
-        public TraderController(IFinancialDataService financialDataService)
+    [HttpGet]
+    [Route("Buy")]
+    public IActionResult BuyStock(string ticker, double count)
+    {
+        try
         {
-            _financialDataService = financialDataService;
+            _financialDataService.BuyStock(ticker, count);
+
+            return Ok();
         }
-
-        [HttpGet]
-        [Route("Buy")]
-        public IActionResult BuyStock(string ticker, double count)
+        catch
         {
-            try
-            {
-                _financialDataService.BuyStock(ticker, count);
-
-                return Ok();
-            }
-            catch
-            {
-                return BadRequest();
-            }
+            return BadRequest();
         }
+    }
 
-        [HttpGet]
-        [Route("Sell")]
-        public IActionResult SellStock(string ticker, double count)
+    [HttpGet]
+    [Route("Sell")]
+    public IActionResult SellStock(string ticker, double count)
+    {
+        try
         {
-            try
-            {
-                _financialDataService.SellStock(ticker, count);
+            _financialDataService.SellStock(ticker, count);
 
-                return Ok();
-            }
-            catch
-            {
-                return BadRequest();
-            }
+            return Ok();
+        }
+        catch
+        {
+            return BadRequest();
         }
     }
 }

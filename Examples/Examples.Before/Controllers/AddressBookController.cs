@@ -1,26 +1,25 @@
 ﻿using Examples.Mocks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Examples.Before.Controllers
+namespace Examples.Before.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class AddressBookController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class AddressBookController : ControllerBase
+    private readonly QuickSortService _sortingAlgorithm;
+
+    public AddressBookController()
     {
-        private readonly QuickSortService _sortingAlgorithm;
+        _sortingAlgorithm = new QuickSortService();
+    }
 
-        public AddressBookController()
-        {
-            _sortingAlgorithm = new QuickSortService();
-        }
+    [HttpGet]
+    public IActionResult GetSortedAddresses()
+    {
+        var addressesList = MockAddressBook.Addresses.ToArray();
+        _sortingAlgorithm.Sort(addressesList);
 
-        [HttpGet]
-        public IActionResult GetSortedAddresses()
-        {
-            var addressesList = MockAddressBook.Addresses.ToArray();
-            _sortingAlgorithm.Sort(addressesList);
-
-            return Ok(addressesList);
-        }
+        return Ok(addressesList);
     }
 }

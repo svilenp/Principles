@@ -8,4 +8,11 @@ public static class Enums
         Medium,
         Big
     }
+
+    public enum ExportType
+    {
+        Full,
+        Limited,
+        Summary
+    }
 }

@@ -1,4 +1,5 @@
-﻿using Examples.Mocks;
+﻿using Examples.Before.SOLID.DIP;
+using Examples.Mocks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Examples.Before.Controllers;

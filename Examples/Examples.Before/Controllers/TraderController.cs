@@ -1,4 +1,4 @@
-﻿using Examples.Interfaces;
+﻿using Examples.Before.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Examples.Before.Controllers;

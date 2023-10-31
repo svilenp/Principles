@@ -1,5 +1,4 @@
 ﻿using Examples.Mocks;
-using Examples.Interfaces;
 using Examples.Models;
 using System.Text;
 using System.Net;
@@ -7,8 +6,9 @@ using System.Net.Mail;
 using OfficeOpenXml.Style;
 using OfficeOpenXml;
 using Examples.Mocks.Interfaces;
+using Examples.Before.Interfaces;
 
-namespace Examples.SOLID.SRP;
+namespace Examples.Before.SOLID.SRP;
 
 public class FinancialDataService : IFinancialDataService
 {

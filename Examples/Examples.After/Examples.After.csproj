@@ -11,10 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="SOLID\DIP\" />
     <Folder Include="SOLID\ISP\" />
     <Folder Include="SOLID\OCP\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Examples.Mocks\Examples.Mocks.csproj" />
+    <ProjectReference Include="..\Examples.Models\Examples.Models.csproj" />
   </ItemGroup>
 
 </Project>

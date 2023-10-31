@@ -1,6 +1,6 @@
 ﻿using Examples.Models;
 
-namespace Examples.Interfaces;
+namespace Examples.Before.Interfaces;
 
 public interface IFinancialDataService
 {

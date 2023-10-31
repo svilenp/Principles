@@ -1,6 +1,6 @@
 ﻿using Examples.Before.Interfaces;
+using Examples.Mocks;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace Examples.Before.Controllers;
 
@@ -10,10 +10,17 @@ namespace Examples.Before.Controllers;
 public class FinancialReportingController : ControllerBase
 {
     private readonly IFinancialDataService _financialDataService;
+    private readonly IFinancialExportService _exportService;
+    private readonly INotificationService _notificationService;
 
-    public FinancialReportingController(IFinancialDataService financialDataService)
+    public FinancialReportingController(
+        IFinancialDataService financialDataService,
+        IFinancialExportService exportService,
+        INotificationService notificationService)
     {
         _financialDataService = financialDataService;
+        _exportService = exportService;
+        _notificationService = notificationService;
     }
 
     [HttpPost]
@@ -23,7 +30,7 @@ public class FinancialReportingController : ControllerBase
         try
         {
             var finModels = _financialDataService.GetMetrics(tickers);
-            var result = _financialDataService.ExportData(finModels);
+            var result = _exportService.ExportData(finModels);
 
             if (result != null)
             {
@@ -47,14 +54,14 @@ public class FinancialReportingController : ControllerBase
         try
         {
             var finModels = _financialDataService.GetMetrics(tickers);
-            var currentUserEmail = GetCurrentUserEmail();
+            var currentUserEmail = MockUserService.GetCurrentUserEmail(User);
 
             if (string.IsNullOrEmpty(currentUserEmail))
             {
                 return BadRequest("User email not found.");
             }
 
-            var result = _financialDataService.SendData(finModels, currentUserEmail);
+            var result = _notificationService.SendData(finModels, currentUserEmail);
 
             if (result != null)
             {
@@ -69,12 +76,5 @@ public class FinancialReportingController : ControllerBase
         {
             return BadRequest();
         }
-    }
-
-    private string GetCurrentUserEmail()
-    {
-        // Get the current user from the user claims identity
-        // NOTE: This requires authentication mechanism to be set up and [Authorize] attribute 
-        return User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value ?? "dummy@livethecode.com";
     }
 }

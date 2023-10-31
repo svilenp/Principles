@@ -11,9 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SOLID\DIP\" />
     <Folder Include="SOLID\ISP\" />
-    <Folder Include="SOLID\OCP\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,4 @@
 ﻿using Examples.Before.Interfaces;
-using Examples.Before.SOLID.OCP;
 using Examples.Before.SOLID.SRP;
 using Examples.Mocks;
 using Examples.Mocks.Interfaces;
@@ -15,7 +14,9 @@ public static class DependencyInjectionSetup
         services.AddSwaggerGen();
 
         services.AddScoped<IFinancialDataService, FinancialDataService>();
-        services.AddScoped<IExportService, ExportService>();
+        services.AddScoped<IFinancialExportService, FinancialExportService>();
+        services.AddScoped<INotificationService, NotificationService>();
+        services.AddScoped<ITradeService, TradeService>();
 
         services.AddSingleton<ISmsApi, DummySmsApi>();
         services.AddSingleton<ITradingApi, DummyTradingApi>();

@@ -1,4 +1,4 @@
-﻿namespace Examples.Mocks;
+﻿namespace Examples.Before.SOLID.DIP;
 
 public class QuickSortService
 {
@@ -24,7 +24,7 @@ public class QuickSortService
     private int Partition<T>(T[] array, int left, int right) where T : IComparable<T>
     {
         T pivot = array[right];
-        int i = (left - 1);
+        int i = left - 1;
 
         for (int j = left; j < right; j++)
         {

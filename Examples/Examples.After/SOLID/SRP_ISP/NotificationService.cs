@@ -3,9 +3,9 @@ using System.Text;
 using System.Net;
 using System.Net.Mail;
 using Examples.Mocks.Interfaces;
-using Examples.Before.Interfaces;
+using Examples.After.SOLID.SRP;
 
-namespace Examples.Before.SOLID.SRP;
+namespace Examples.After.SOLID.SRP;
 
 public class NotificationService : INotificationService
 {

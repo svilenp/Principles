@@ -1,8 +1,8 @@
-﻿using Examples.Before.Interfaces;
+﻿using Examples.After.SOLID.SRP;
 using Examples.Mocks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Examples.Before.Controllers;
+namespace Examples.After.Controllers;
 
 //[Authorize]
 [ApiController]
@@ -34,7 +34,10 @@ public class FinancialReportingController : ControllerBase
 
             if (result != null)
             {
-                return Ok(result);
+                string contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                string fileName = "ExportedData.xlsx"; 
+
+                return File(result, contentType, fileName);
             }
             else
             {

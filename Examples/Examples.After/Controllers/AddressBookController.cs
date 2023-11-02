@@ -8,14 +8,16 @@ namespace Examples.After.Controllers;
 [Route("api/[controller]")]
 public class AddressBookController : ControllerBase
 {
-    private readonly QuickSortService _sortingAlgorithm;
+    private readonly ISortingAlgorithmService _sortingAlgorithm;
 
-    public AddressBookController()
+    public AddressBookController(ISortingAlgorithmService sortingAlgorithm)
     {
-        _sortingAlgorithm = new QuickSortService();
+        _sortingAlgorithm = sortingAlgorithm;
     }
 
     [HttpGet]
+
+    [Route("GetSorted")]
     public IActionResult GetSortedAddresses()
     {
         var addressesList = MockAddressBook.Addresses(10).ToArray();

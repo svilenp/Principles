@@ -1,4 +1,4 @@
-﻿namespace Examples.Before.SOLID.LSP;
+﻿namespace Examples.After.SOLID.LSP;
 
 public abstract class WaterCreature
 {

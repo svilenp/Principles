@@ -6,9 +6,8 @@ using System.Net.Mail;
 using OfficeOpenXml.Style;
 using OfficeOpenXml;
 using Examples.Mocks.Interfaces;
-using Examples.Before.Interfaces;
 
-namespace Examples.Before.SOLID.SRP;
+namespace Examples.After.SOLID.SRP;
 
 public class FinancialDataService : IFinancialDataService
 {

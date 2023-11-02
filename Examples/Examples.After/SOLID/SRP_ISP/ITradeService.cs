@@ -1,4 +1,4 @@
-﻿namespace Examples.Before.Interfaces;
+﻿namespace Examples.After.SOLID.SRP;
 
 public interface ITradeService
 {

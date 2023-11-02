@@ -41,7 +41,25 @@ public static class MockFinancialService
 
     public static IEnumerable<RankModel> GetRanksForTickers(IEnumerable<string> tickers)
     {
-        throw new NotImplementedException();
+       var data = new List<RankModel>();
+
+        // Generate sample data
+        Random random = new Random();
+        for (int i = 1; i <= 10; i++)
+        {
+            RankModel rank = new RankModel
+            {
+                Company = $"Company {i}",
+                Rank = random.Next(1, 101),
+                ValueScore = random.Next(1, 101),
+                GrowthScore = random.Next(1, 101),
+                MomentumScore = random.Next(1, 101),
+                VgmScore = random.Next(1, 101)
+            };
+            data.Add(rank);
+        }
+
+        return data;
     }
 
     public static byte[] GetExportData(IEnumerable<FinancialsModel> data)

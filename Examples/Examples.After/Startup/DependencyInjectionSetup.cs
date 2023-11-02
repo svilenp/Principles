@@ -1,9 +1,10 @@
-﻿using Examples.Before.Interfaces;
-using Examples.Before.SOLID.SRP;
+﻿using Examples.After.SOLID.DIP;
+using Examples.After.SOLID.SRP;
+using Examples.After.SOLID.SRP;
 using Examples.Mocks;
 using Examples.Mocks.Interfaces;
 
-namespace Examples.Before.Startup;
+namespace Examples.After.Startup;
 
 public static class DependencyInjectionSetup
 {
@@ -17,6 +18,7 @@ public static class DependencyInjectionSetup
         services.AddScoped<IFinancialExportService, FinancialExportService>();
         services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<ITradeService, TradeService>();
+        services.AddScoped<ISortingAlgorithmService, QuickSortService>();
 
         services.AddSingleton<ISmsApi, DummySmsApi>();
         services.AddSingleton<ITradingApi, DummyTradingApi>();

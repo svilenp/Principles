@@ -1,11 +1,10 @@
-﻿using Examples.Before.Interfaces;
-using Examples.Mocks;
+﻿using Examples.Mocks;
 using Examples.Models.Models;
 using OfficeOpenXml;
 
 using static Examples.Models.Static.Enums;
 
-namespace Examples.Before.SOLID.OCP;
+namespace Examples.After.SOLID.OCP;
 
 public class ExportService : IExportService
 {

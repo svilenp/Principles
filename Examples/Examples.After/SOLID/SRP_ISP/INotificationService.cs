@@ -1,6 +1,6 @@
 ﻿using Examples.Models;
 
-namespace Examples.Before.Interfaces;
+namespace Examples.After.SOLID.SRP;
 
 public interface INotificationService
 {

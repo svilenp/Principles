@@ -1,8 +1,8 @@
-﻿using Examples.Before.Interfaces;
+﻿using Examples.After.SOLID.SRP;
 using Examples.Mocks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Examples.Before.Controllers;
+namespace Examples.After.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

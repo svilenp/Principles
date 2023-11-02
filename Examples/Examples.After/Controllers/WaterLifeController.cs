@@ -1,5 +1,4 @@
 ﻿using Examples.After.SOLID.LSP;
-using Examples.Models.Static;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Examples.After.Controllers;
@@ -14,16 +13,15 @@ public class WaterLifeController : ControllerBase
     {
         var waterAnimals = new List<WaterCreature>()
         {
-            new WaterCreature 
+            new WhaleShark
             {
-                Name = "Shark", 
-                EggsSize = Enums.Size.Medium,
+                Name = "Sharky",
                 FavouriteFood = "Herring",
                 SwimmingKmPerDay = 50
             },
             new Dolphin
             {
-                Name = "Dolphin",
+                Name = "aDolph",
                 FavouriteFood = "Squid",
                 SwimmingKmPerDay = 30
             }

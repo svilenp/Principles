@@ -1,6 +1,6 @@
 ﻿using static Examples.Models.Static.Enums;
 
-namespace Examples.Before.Interfaces;
+namespace Examples.After.SOLID.OCP;
 
 public interface IExportService
 {

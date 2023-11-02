@@ -1,6 +1,6 @@
 ﻿namespace Examples.After.SOLID.DIP;
 
-public class QuickSortService
+public class QuickSortService : ISortingAlgorithmService
 {
     public void Sort<T>(T[] array) where T : IComparable<T>
     {

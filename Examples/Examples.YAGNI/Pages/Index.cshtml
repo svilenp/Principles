@@ -1,0 +1,21 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<form method="post" asp-page-handler="UpdateWeight">
+    <label for="newWeight">New Weight:</label>
+    <input type="hidden" id="id" name="id" asp-for="@Model.UserData.Id" />
+    <input type="text" id="newWeight" name="newWeight" />
+    <button type="submit">Update Weight</button>
+</form>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Name: @Model.UserData.Name</p>
+    <p>Age: @Model.UserData.Age</p>
+    <p>Height: @Model.UserData.Height</p>
+    <p>Weight: @Model.UserData.Weight</p>
+</div>
+

@@ -1,5 +1,5 @@
 ﻿using Examples.After.SOLID.DIP;
-using Examples.After.SOLID.SRP;
+using Examples.After.SOLID.OCP;
 using Examples.After.SOLID.SRP;
 using Examples.Mocks;
 using Examples.Mocks.Interfaces;
@@ -19,6 +19,7 @@ public static class DependencyInjectionSetup
         services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<ITradeService, TradeService>();
         services.AddScoped<ISortingAlgorithmService, QuickSortService>();
+        services.AddScoped<IExportBaseHelper, ExportBaseHelper>();
 
         services.AddSingleton<ISmsApi, DummySmsApi>();
         services.AddSingleton<ITradingApi, DummyTradingApi>();

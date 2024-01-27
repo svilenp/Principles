@@ -1,4 +1,4 @@
-using Examples.After.Startup;
+using Examples.Before.Startup;
 
 var builder = WebApplication.CreateBuilder(args);
 

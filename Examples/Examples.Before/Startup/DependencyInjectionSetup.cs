@@ -1,9 +1,9 @@
-﻿using Examples.After.SOLID.OCP;
-using Examples.After.SOLID.SRP;
+﻿using Examples.Before.SOLID.OCP;
+using Examples.Before.SOLID.SRP_ISP;
 using Examples.Mocks;
 using Examples.Mocks.Interfaces;
 
-namespace Examples.After.Startup;
+namespace Examples.Before.Startup;
 
 public static class DependencyInjectionSetup
 {

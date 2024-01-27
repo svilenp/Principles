@@ -7,7 +7,7 @@ using OfficeOpenXml.Style;
 using OfficeOpenXml;
 using Examples.Mocks.Interfaces;
 
-namespace Examples.After.SOLID.SRP;
+namespace Examples.Before.SOLID.SRP_ISP;
 
 public class FinancialDataService : IFinancialDataService
 {

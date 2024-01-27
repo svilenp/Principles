@@ -4,7 +4,7 @@ using OfficeOpenXml;
 
 using static Examples.Models.Static.Enums;
 
-namespace Examples.After.SOLID.OCP;
+namespace Examples.Before.SOLID.OCP;
 
 public class ExportService : IExportService
 {

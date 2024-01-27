@@ -1,6 +1,6 @@
 ﻿using Examples.Models;
 
-namespace Examples.After.SOLID.SRP;
+namespace Examples.Before.SOLID.SRP_ISP;
 
 public interface IFinancialDataService
 {

@@ -1,4 +1,4 @@
-﻿using Examples.After.SOLID.SRP;
+﻿using Examples.Before.SOLID.SRP_ISP;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 

@@ -1,4 +1,4 @@
-﻿using Examples.After.SOLID.LSP;
+﻿using Examples.Before.SOLID.LSP;
 using Examples.Models.Static;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +14,7 @@ public class WaterLifeController : ControllerBase
     {
         var waterAnimals = new List<WaterCreature>()
         {
-            new WaterCreature 
+            new WaterCreature // Shark
             {
                 Name = "Shark", 
                 EggsSize = Enums.Size.Medium,

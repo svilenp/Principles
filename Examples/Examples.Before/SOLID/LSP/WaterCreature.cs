@@ -1,6 +1,6 @@
 ﻿using static Examples.Models.Static.Enums;
 
-namespace Examples.After.SOLID.LSP;
+namespace Examples.Before.SOLID.LSP;
 
 public class WaterCreature
 {
